@@ -11,14 +11,18 @@ const getPicture = function () {
       if (response.ok) {
         return response.json()
       } else {
-        throw new Error(`Error`)
+        throw new Error(`Error-: ${response.statusText}`)
       }
     })
     .then(function (arrayOfInfo) {
-      const newImg = document.querySelectorAll(`.card-img-top`)
-      // newImg.forEach(arrayOfInfo.photos[i].src.original)
-      console.log(arrayOfInfo.photos[0].src.original)
-      const changeImgBtn = document.querySelector(`.btn .btn-primary`)
+      const oldImg = document.querySelectorAll(`.card-img-top`)
+      const newImg = arrayOfInfo.photos
+
+      oldImg.forEach(function (img, i) {
+        if (newImg[i]) {
+          img.src = newImg[i].src.original
+        }
+      })
     })
     .catch(function (err) {
       console.log(`Error`, err)
