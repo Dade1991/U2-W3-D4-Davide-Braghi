@@ -21,14 +21,13 @@ const getPicture = function () {
     .then(function (arrayOfInfo) {
       // richiamo gli elementi HTML su cui dovrò intervenire.
       const oldImg = document.querySelectorAll(`.card-img-top`)
+
       // estrapolo dall'API l'array specifico dove sono contenute le info che mi servono
       const newImg = arrayOfInfo.photos
       console.log(arrayOfInfo)
 
       // ciclo le immagini presenti sull'HTML dando istruzioni su cosa fare e due parametri (img > accedo al sottolivello di arrayOfInfo & i, l'indicizzazione di ciascun elemento), ovvero, cambiarle con quelle nuove (newImg[i].src.original serve x accedere ancora più in profondità e recuperare esattamente quello che mi serve, ovvero una IMG proveniente da API Link in formato/dimensione "originale")
       oldImg.forEach(function (img, i) {
-        console.log(i)
-
         if (newImg[i]) {
           img.src = newImg[i].src.original
         }
